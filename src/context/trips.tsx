@@ -3,19 +3,22 @@ import React, { createContext, FC, useEffect, useReducer } from "react";
 enum TripType {
   LOAD_TRIPS = "LOAD_TRIPS",
   ADD_TRIP = "ADD_TRIP",
+  MODIFY_TRIP = "MODIFY_TRIP",
 }
 
 interface Trip {
   id: number;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
+  destination: string;
+  address: string;
+  imageUrl: string;
+  inhabitants: number;
+  hotels: number;
+  averageIncome: number;
+  area: number;
+  isActive: boolean;
 }
-
 interface State {
   trips: Trip[];
-  addTrip?: (trip: Trip) => void;
 }
 
 const defaultState: State = {
@@ -32,10 +35,20 @@ type AddTripAction = {
   payload: Trip;
 };
 
-type TripActionTypes = LoadTripsAction | AddTripAction;
+type ModifyTripAction = {
+  type: typeof TripType.MODIFY_TRIP;
+  payload: Trip;
+};
+
+type TripActionTypes = LoadTripsAction | AddTripAction | ModifyTripAction;
 
 export const addTrip = (trip: Trip): AddTripAction => ({
   type: TripType.ADD_TRIP,
+  payload: trip,
+});
+
+export const modifyTrip = (trip: Trip): ModifyTripAction => ({
+  type: TripType.MODIFY_TRIP,
   payload: trip,
 });
 
@@ -62,6 +75,13 @@ export const reducer = (state: State, action: TripActionTypes): State => {
       return {
         ...state,
         trips: [...state.trips, action.payload],
+      };
+    case TripType.MODIFY_TRIP:
+      return {
+        ...state,
+        trips: state.trips.map((trip) =>
+          trip.id === action.payload.id ? action.payload : trip
+        ),
       };
     default:
       return state;
