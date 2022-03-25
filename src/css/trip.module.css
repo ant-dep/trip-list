@@ -1,0 +1,79 @@
+.tripContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-height: 450px;
+  background-color: white;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.imageContainer {
+  display: flex;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+.imageContainer img {
+  width: 100%;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  width: 100%;
+}
+
+.info p {
+  padding: 10px 0;
+  font-weight: 300;
+}
+
+.toggleContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 2;
+}
+
+.toggleOn {
+  font-size: 40px;
+  color: #ccc;
+}
+
+.toggleOff {
+  font-size: 40px;
+  color: #00e082;
+}
+
+.numbers {
+  border-top: 1px solid #ededed;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  width: 100%;
+  padding: 10px 0;
+}
+
+.numbers p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.numbers span {
+  font-weight: 300;
+  padding: 10px;
+}

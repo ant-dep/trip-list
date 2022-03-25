@@ -1,0 +1,98 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 100%, 600px);
+  border-radius: 4px;
+  box-shadow: 0 0 5px #ccc;
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.modal h2 {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.modal input {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #ededed;
+  border: none;
+  border-radius: 4px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.modal input:focus {
+  outline: 1px solid #00e082;
+}
+
+.inputContainerInline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.inputContainerInline > input {
+  width: 24%;
+}
+
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.toggleOn {
+  margin-right: 10px;
+  font-size: 30px;
+  color: #ccc;
+}
+
+.toggleOff {
+  margin-right: 10px;
+  font-size: 30px;
+  color: #00e082;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.buttonContainer button:nth-child(1) {
+  margin-right: 40px;
+  color: darkgrey;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.buttonContainer button:nth-child(2) {
+  color: chartreuse;
+  font-weight: 900;
+}

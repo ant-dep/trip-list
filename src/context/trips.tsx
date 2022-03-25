@@ -2,7 +2,6 @@ import React, { createContext, FC, useEffect, useReducer } from "react";
 
 enum TripType {
   LOAD_TRIPS = "LOAD_TRIPS",
-  ADD_TRIP = "ADD_TRIP",
   MODIFY_TRIP = "MODIFY_TRIP",
 }
 
@@ -11,7 +10,7 @@ interface Trip {
   destination: string;
   address: string;
   imageUrl: string;
-  inhabitants: number;
+  inHabitants: number;
   hotels: number;
   averageIncome: number;
   area: number;
@@ -30,22 +29,12 @@ type LoadTripsAction = {
   payload: Trip[];
 };
 
-type AddTripAction = {
-  type: typeof TripType.ADD_TRIP;
-  payload: Trip;
-};
-
 type ModifyTripAction = {
   type: typeof TripType.MODIFY_TRIP;
   payload: Trip;
 };
 
-type TripActionTypes = LoadTripsAction | AddTripAction | ModifyTripAction;
-
-export const addTrip = (trip: Trip): AddTripAction => ({
-  type: TripType.ADD_TRIP,
-  payload: trip,
-});
+type TripActionTypes = LoadTripsAction | ModifyTripAction;
 
 export const modifyTrip = (trip: Trip): ModifyTripAction => ({
   type: TripType.MODIFY_TRIP,
@@ -71,11 +60,6 @@ export const reducer = (state: State, action: TripActionTypes): State => {
         ...state,
         trips: action.payload,
       };
-    case TripType.ADD_TRIP:
-      return {
-        ...state,
-        trips: [...state.trips, action.payload],
-      };
     case TripType.MODIFY_TRIP:
       return {
         ...state,
@@ -91,12 +75,11 @@ export const reducer = (state: State, action: TripActionTypes): State => {
 export const TripsProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
+  let storage = localStorage.getItem("trips");
+
   useEffect(() => {
-    let localTrips = window.localStorage.getItem("trips");
-    if (localTrips) {
-      dispatch(loadTrips(JSON.parse(localTrips)));
-    }
-  }, []);
+    storage && dispatch(loadTrips(JSON.parse(storage)));
+  }, [storage]);
 
   return (
     <GlobalContext.Provider value={[state, dispatch]}>
