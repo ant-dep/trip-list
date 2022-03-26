@@ -71,12 +71,12 @@ export default function BasicModal({ open, setOpen }: Props) {
           </Typography>
           <div className={style.inputContainer}>
             <input
-              autoFocus
               type="text"
               placeholder="Destination"
               onChange={(e) => setDestination(e.target.value)}
             />
             <input
+              autoFocus
               type="text"
               placeholder="Adresse"
               onChange={(e) => {

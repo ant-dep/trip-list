@@ -5,7 +5,6 @@ import style from "../css/tripList.module.css";
 
 export default function TripList() {
   const [State] = useContext(GlobalContext);
-
   return (
     <div className={style.tripListContainer}>
       {State?.trips?.map((trip, id) => (
